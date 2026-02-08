@@ -375,6 +375,7 @@ function mergeConfig(data: unknown, base: AppConfig): AppConfig {
   return {
     apiBaseUrl: str(o.apiBaseUrl, base.apiBaseUrl),
     apiPathPrefix: str(o.apiPathPrefix, base.apiPathPrefix),
+    errorRequestFailed: str(o.errorRequestFailed, base.errorRequestFailed),
     appName: str(o.appName, base.appName),
     siteTitle: str(o.siteTitle, base.siteTitle),
     brandAriaLabel: str(o.brandAriaLabel, base.brandAriaLabel),
@@ -437,6 +438,7 @@ function mergeConfig(data: unknown, base: AppConfig): AppConfig {
     releaseDateLabel: str(o.releaseDateLabel, base.releaseDateLabel),
     deliveryLabel: str(o.deliveryLabel, base.deliveryLabel),
     postcodePlaceholder: str(o.postcodePlaceholder, base.postcodePlaceholder),
+    emptyValueLabel: str(o.emptyValueLabel, base.emptyValueLabel),
     closeZoomAriaLabel: str(o.closeZoomAriaLabel, base.closeZoomAriaLabel),
     closeZoomButtonLabel: str(o.closeZoomButtonLabel, base.closeZoomButtonLabel),
     zoomOutAriaLabel: str(o.zoomOutAriaLabel, base.zoomOutAriaLabel),
@@ -477,7 +479,8 @@ export async function loadConfig(): Promise<AppConfig> {
   if (config) return config;
   config = defaultFromFile;
   try {
-    const res = await fetch('/config.json', { cache: 'no-store' });
+    const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
+    const res = await fetch(`${base}config.json`, { cache: 'no-store' });
     if (!res.ok) return config;
     const data = (await res.json()) as unknown;
     config = mergeConfig(normalizeConfig(data), config);

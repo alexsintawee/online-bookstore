@@ -1,0 +1,28 @@
+fix: cPanel deploy – API base path, frontend serving, and config load
+
+Backend:
+- Add BASE_PATH env and /online-bookstore fallback so API works when
+  cPanel does not pass BASE_PATH; mount routes at basePath, fallbackPath,
+  and root for different proxy behaviors.
+- Serve frontend from backend/frontend-dist or online-bookstore/frontend-dist;
+  support FRONTEND_DIST env; register fallbackPath before root so
+  GET /online-bookstore/assets/* returns static files, not index.html.
+- Add explicit asset routes for /online-bookstore/assets/:filename and
+  /assets/:filename with correct MIME types (application/javascript,
+  text/css) to fix "Expected JavaScript but got text/html".
+- Add root static and SPA fallback for when proxy strips /online-bookstore.
+
+Frontend:
+- Add config.production.json with API baseUrl and pathPrefix for
+  https://portfolio.alexsintawee.com/online-bookstore/api/.
+- Use Vite base (VITE_APP_BASE) and BrowserRouter basename for
+  /online-bookstore/ deployment.
+- Load config from app base path (e.g. /online-bookstore/config.json)
+  so production config is used and "Failed to fetch" is fixed.
+- Fix mergeConfig: include errorRequestFailed and emptyValueLabel.
+
+Docs:
+- deploy-cpanel.md: document server folder, API endpoint, frontend
+  deploy, FRONTEND_DIST and BASE_PATH env vars.
+
+.gitignore: ignore backend/frontend-dist/.

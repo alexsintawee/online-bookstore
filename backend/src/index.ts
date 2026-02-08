@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { ProductRepository } from './repositories/ProductRepository';
 import { CartRepository } from './repositories/CartRepository';
 import { PricingEngine } from './domain/PricingEngine';
@@ -56,6 +57,55 @@ if (fallbackPath !== basePath) {
   app.use(fallbackPath, createProductsRouter(productService));
   app.use(fallbackPath, createCartRouter(cartService));
   app.use(fallbackPath, createPromotionsRouter(projectData));
+}
+
+// Serve frontend SPA: env FRONTEND_DIST, or backend/frontend-dist, or online-bookstore/frontend-dist (sibling)
+const frontendDistEnv = process.env.FRONTEND_DIST;
+const frontendDistInBackend = path.join(__dirname, '../frontend-dist');
+const frontendDistSibling = path.join(__dirname, '../../frontend-dist');
+const frontendDist = (frontendDistEnv && fs.existsSync(frontendDistEnv))
+  ? frontendDistEnv
+  : fs.existsSync(frontendDistInBackend)
+    ? frontendDistInBackend
+    : fs.existsSync(frontendDistSibling)
+      ? frontendDistSibling
+      : '';
+if (frontendDist) {
+  const sendIndex = (_req: express.Request, res: express.Response) =>
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  const assetsDir = path.join(frontendDist, 'assets');
+  // Serve JS/CSS with explicit MIME type so browser never gets text/html
+  const sendAsset = (req: express.Request, res: express.Response) => {
+    const file = path.join(assetsDir, req.params.filename);
+    if (!fs.existsSync(file) || !fs.statSync(file).isFile())
+      return res.status(404).end();
+    const ext = path.extname(file).toLowerCase();
+    if (ext === '.js') res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+    else if (ext === '.css') res.setHeader('Content-Type', 'text/css; charset=utf-8');
+    res.sendFile(path.resolve(file));
+  };
+  // Fallback path FIRST so GET /online-bookstore/assets/* is served as static
+  if (fallbackPath !== basePath) {
+    app.get(fallbackPath + '/assets/:filename', sendAsset);
+    app.use(fallbackPath, express.static(frontendDist, { index: false }));
+    app.get(fallbackPath, sendIndex);
+    app.get(fallbackPath + '/', sendIndex);
+    app.get(fallbackPath + '/*', sendIndex);
+  }
+  app.get(basePath + '/assets/:filename', sendAsset);
+  app.use(basePath, express.static(frontendDist, { index: false }));
+  app.get(basePath, sendIndex);
+  app.get(basePath + '/', sendIndex);
+  app.get(basePath + '/*', sendIndex);
+  app.get('/assets/:filename', sendAsset);
+  app.use('/assets', express.static(assetsDir, { index: false }));
+  app.get('/', sendIndex);
+  app.get('/*', (req, res) => {
+    const file = path.join(frontendDist, req.path);
+    if (fs.existsSync(file) && fs.statSync(file).isFile())
+      return res.sendFile(path.resolve(file));
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
 }
 
 const PORT = process.env.PORT ?? 3001;

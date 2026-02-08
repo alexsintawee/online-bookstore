@@ -38,6 +38,9 @@ coverage/
 # Vite
 frontend/dist/
 
+# Backend copy of frontend build (used when serving frontend from backend)
+backend/frontend-dist/
+
 # Optional: uncomment to ignore lock files (not recommended for apps)
 # package-lock.json
 # yarn.lock

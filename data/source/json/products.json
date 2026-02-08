@@ -1,0 +1,7 @@
+[
+  {"sku":"9325336130810","name":"Game of Thrones: Season 1","price":39.49,"imageUrl":"/api/images/9325336130810.jpg"},
+  {"sku":"9325336028278","name":"The Fresh Prince of Bel-Air","price":19.99,"imageUrl":"/api/images/9325336028278.svg"},
+  {"sku":"9780201835953","name":"The Mythical Man-Month","price":31.87,"imageUrl":"/api/images/9780201835953.svg"},
+  {"sku":"9781430219484","name":"Coders at Work","price":28.72,"imageUrl":"/api/images/9781430219484.svg"},
+  {"sku":"9780132071482","name":"Artificial Intelligence","price":119.92,"imageUrl":"/api/images/9780132071482.svg"}
+]

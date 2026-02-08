@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" fill="none">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c1810"/>
+      <stop offset="100%" stop-color="#5c3020"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bg1)" rx="4"/>
+  <text x="100" y="120" text-anchor="middle" fill="#e8d5c4" font-family="Georgia, serif" font-size="16" font-weight="bold">Game of</text>
+  <text x="100" y="145" text-anchor="middle" fill="#e8d5c4" font-family="Georgia, serif" font-size="16" font-weight="bold">Thrones</text>
+  <text x="100" y="175" text-anchor="middle" fill="#c4a882" font-family="Georgia, serif" font-size="14">Season 1</text>
+</svg>

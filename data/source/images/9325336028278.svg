@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" fill="none">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a2e"/>
+      <stop offset="100%" stop-color="#2d5a4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bg2)" rx="4"/>
+  <text x="100" y="115" text-anchor="middle" fill="#e8f5f0" font-family="Georgia, serif" font-size="12" font-weight="bold">The Fresh Prince</text>
+  <text x="100" y="140" text-anchor="middle" fill="#e8f5f0" font-family="Georgia, serif" font-size="12" font-weight="bold">of Bel-Air</text>
+</svg>

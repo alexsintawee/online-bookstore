@@ -1,0 +1,17 @@
+{
+  "api": {
+    "baseUrl": "http://localhost:3001",
+    "pathPrefix": "/api"
+  },
+  "app": {
+    "appName": "Online Bookstore",
+    "siteTitle": "Online Bookstore | Books & More",
+    "searchPlaceholder": "Search books, toys, more...",
+    "copyrightText": "All rights reserved.",
+    "storageKeyCart": "online-bookstore-cart-id",
+    "storageKeyWishlist": "online-bookstore-wishlist"
+  },
+  "header": {
+    "brandAriaLabel": "Online Bookstore home"
+  }
+}

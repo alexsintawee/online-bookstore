@@ -1,0 +1,19 @@
+/* Editorial layout – generous whitespace, premium feel */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--space-md) 0 var(--space-3xl);
+  transition: padding 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: var(--space-xl) 0 var(--space-4xl);
+  }
+}

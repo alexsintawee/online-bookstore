@@ -1,0 +1,39 @@
+/* Editorial price – elegant, clear hierarchy */
+
+.wrap {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.price,
+.discounted {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+}
+
+.original {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--color-text-subtle);
+  text-decoration: line-through;
+}
+
+.discounted {
+  color: var(--color-accent);
+}
+
+.large .price,
+.large .discounted {
+  font-family: var(--font-editorial);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.large .original {
+  font-size: 1.125rem;
+}

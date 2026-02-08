@@ -1,0 +1,157 @@
+{
+  "api": {
+    "baseUrl": "http://localhost:3001",
+    "pathPrefix": "/api",
+    "errorRequestFailed": "Request failed"
+  },
+  "app": {
+    "appName": "Online Bookstore",
+    "siteTitle": "Online Bookstore | Books & More",
+    "searchPlaceholder": "Search books, toys, more...",
+    "copyrightText": "All rights reserved.",
+    "storageKeyCart": "online-bookstore-cart-id",
+    "storageKeyWishlist": "online-bookstore-wishlist"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "separator": " / ",
+    "categoryLabel": "Books",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "ariaLabel": "Breadcrumb"
+  },
+  "header": {
+    "brandAriaLabel": "Online Bookstore home",
+    "searchAriaLabel": "Search",
+    "accountAriaLabel": "Account",
+    "wishlistAriaLabel": "Wishlist",
+    "wishlistAriaLabelWithCount": "Wishlist ({count} items)",
+    "cartAriaLabel": "Cart",
+    "navItems": [
+      { "label": "Books", "href": "#books" },
+      { "label": "Toys", "href": "#toys" },
+      { "label": "Home", "href": "#home" },
+      { "label": "Baby", "href": "#baby" },
+      { "label": "Sports & Outdoors", "href": "#sports" }
+    ]
+  },
+  "footer": {
+    "columns": [
+      {
+        "title": "Shop",
+        "links": [
+          { "label": "Books", "href": "#books" },
+          { "label": "Toys", "href": "#toys" },
+          { "label": "Home", "href": "#home" }
+        ]
+      },
+      {
+        "title": "About",
+        "links": [
+          { "label": "About Us", "href": "#about" },
+          { "label": "Careers", "href": "#careers" }
+        ]
+      },
+      {
+        "title": "Support",
+        "links": [
+          { "label": "Contact", "href": "#contact" },
+          { "label": "FAQ", "href": "#faq" },
+          { "label": "Returns", "href": "#returns" }
+        ]
+      }
+    ]
+  },
+  "homePage": {
+    "title": "Books",
+    "subtitle": "Discover our selection of books and media.",
+    "sortByLabel": "Sort by",
+    "sortOptionTitle": "Title",
+    "sortOptionPrice": "Price",
+    "loadingProducts": "Loading products…",
+    "errorRetryHint": "Make sure the backend is running:",
+    "errorRetryCode": "cd backend && npm start",
+    "errorLoadProductsDefault": "Could not load products.",
+    "retryBtn": "Retry"
+  },
+  "cart": {
+    "pageTitle": "Shopping cart",
+    "loadingCart": "Loading cart…",
+    "clearCartHint": "Clear cart and start fresh",
+    "emptyMessage": "Your cart is empty.",
+    "continueShopping": "Continue shopping",
+    "orderSummaryTitle": "Order summary",
+    "subtotalLabel": "Subtotal",
+    "discountsLabel": "Discounts",
+    "totalLabel": "Total",
+    "checkoutBtnLabel": "Proceed to checkout"
+  },
+  "wishlist": {
+    "pageTitle": "Wishlist",
+    "emptyMessage": "Your wishlist is empty.",
+    "loadingWishlist": "Loading wishlist…",
+    "addToCartBtn": "Add to Cart",
+    "removeBtn": "Remove",
+    "removeFromWishlistAria": "Remove from wishlist",
+    "productMetaLabel": "Book"
+  },
+  "productDetail": {
+    "notFound": "Product not found.",
+    "backToShop": "Back to shop",
+    "quantityLabel": "Quantity",
+    "wishlistBtn": "Wishlist",
+    "addToCartBtn": "Add to Cart",
+    "addToWishlistAria": "Add to wishlist",
+    "removeFromWishlistAria": "Remove from wishlist",
+    "zoomBtnLabel": "Zoom",
+    "zoomAriaLabel": "Zoom into cover image",
+    "noCoverImage": "No cover image",
+    "authorPlaceholder": "Author placeholder",
+    "formatLabel": "Format",
+    "isbnLabel": "ISBN",
+    "publisherLabel": "Publisher",
+    "pagesLabel": "Pages",
+    "releaseDateLabel": "Release date",
+    "deliveryLabel": "Delivery",
+    "postcodePlaceholder": "Enter postcode",
+    "emptyValueLabel": "—",
+    "closeZoomAriaLabel": "Close zoom",
+    "closeZoomButtonLabel": "×",
+    "zoomOutAriaLabel": "Zoom out",
+    "zoomOutButtonLabel": "−",
+    "zoomInAriaLabel": "Zoom in",
+    "zoomInButtonLabel": "+",
+    "zoomDialogAriaLabel": "Zoomed cover image",
+    "tabSummaryLabel": "Summary",
+    "tabSummaryContent": "A compelling read. This product is part of our catalogue and available for delivery. Add to cart to proceed.",
+    "tabBookDetailsLabel": "Book Details",
+    "tabReviewsLabel": "Reviews",
+    "tabReviewsContent": "No reviews yet. Be the first to review!",
+    "tabReturnsLabel": "Returns",
+    "tabReturnsContent": "Our returns policy allows returns within 30 days for unused items. Contact support for assistance."
+  },
+  "productCard": {
+    "addToCartBtn": "Add to Cart",
+    "addToWishlistAria": "Add to wishlist",
+    "removeFromWishlistAria": "Remove from wishlist",
+    "noCoverImage": "No cover image",
+    "productMetaLabel": "Book"
+  },
+  "cartItem": {
+    "noImageText": "No image",
+    "skuLabel": "SKU",
+    "removeLabel": "Remove",
+    "removeItemAriaLabelTemplate": "Remove {name} from cart"
+  },
+  "quantityStepper": {
+    "groupAriaLabel": "Quantity",
+    "decreaseAriaLabel": "Decrease quantity",
+    "increaseAriaLabel": "Increase quantity"
+  },
+  "money": {
+    "locale": "en-AU",
+    "currency": "AUD",
+    "minFractionDigits": 2,
+    "maxFractionDigits": 2
+  }
+}

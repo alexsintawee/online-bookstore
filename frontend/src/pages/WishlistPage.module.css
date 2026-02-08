@@ -1,0 +1,194 @@
+/* Editorial wishlist – minimal luxury list */
+
+.breadcrumbs {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xl);
+}
+
+.sep {
+  margin: 0 var(--space-sm);
+  opacity: 0.5;
+}
+
+.title {
+  margin: 0 0 var(--space-2xl);
+  font-family: var(--font-editorial);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.loading {
+  padding: var(--space-3xl);
+  text-align: center;
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.empty {
+  padding: var(--space-3xl) var(--space-2xl);
+  text-align: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+}
+
+.empty p {
+  margin: 0 0 var(--space-lg);
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.shopLink {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-text);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.shopLink:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  text-decoration: none;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-light);
+}
+
+.imageLink {
+  display: block;
+  aspect-ratio: 2/3;
+  background: var(--color-surface-warm);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.item:hover .image {
+  transform: scale(1.02);
+}
+
+.details {
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-editorial);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+  display: block;
+  margin-bottom: var(--space-sm);
+  transition: color 0.2s ease;
+}
+
+.name:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.meta {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.addBtn {
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-text);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.addBtn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.removeBtn {
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.removeBtn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}

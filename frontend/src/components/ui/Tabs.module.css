@@ -1,0 +1,60 @@
+/* Magazine chapter tabs – editorial sections */
+
+.tabs {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-warm);
+}
+
+.tab {
+  padding: var(--space-md) var(--space-xl);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.tab:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.tabActive {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-text);
+  margin-bottom: -1px;
+  font-weight: 600;
+}
+
+.panel {
+  padding: var(--space-2xl);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: var(--color-text-muted);
+}
+
+.panel p {
+  margin: 0 0 var(--space-md);
+}
+
+.panel p:last-child {
+  margin-bottom: 0;
+}

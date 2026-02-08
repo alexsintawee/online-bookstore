@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" fill="none">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d2c1e"/>
+      <stop offset="100%" stop-color="#5c4532"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bg4)" rx="4"/>
+  <text x="100" y="125" text-anchor="middle" fill="#f0e6d8" font-family="Georgia, serif" font-size="14" font-weight="bold">Coders</text>
+  <text x="100" y="150" text-anchor="middle" fill="#f0e6d8" font-family="Georgia, serif" font-size="14" font-weight="bold">at Work</text>
+  <text x="100" y="180" text-anchor="middle" fill="#c4b59a" font-family="Georgia, serif" font-size="10">Reflections on programming</text>
+</svg>

@@ -1,0 +1,28 @@
+{
+  "promotions": [
+    {
+      "type": "bulk_price",
+      "id": "bulk-mythical-man-month",
+      "sku": "9780201835953",
+      "minQuantity": 10,
+      "discountedUnitPrice": 21.99,
+      "description": "Buy 10 or more copies of The Mythical Man-Month, and receive them at the discounted price of $21.99"
+    },
+    {
+      "type": "multi_buy_free",
+      "id": "3-for-2-coders-at-work",
+      "sku": "9781430219484",
+      "groupSize": 3,
+      "freeCount": 1,
+      "description": "Buy 3 get 1 free on Coders at Work"
+    },
+    {
+      "type": "multi_buy_free",
+      "id": "3-for-2-game-of-thrones",
+      "sku": "9325336130810",
+      "groupSize": 3,
+      "freeCount": 1,
+      "description": "Buy 3 get 1 free on Game of Thrones: Season 1"
+    }
+  ]
+}

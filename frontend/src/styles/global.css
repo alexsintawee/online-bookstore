@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Editorial luxury design system
+   High-fashion magazine aesthetic: bold typography, neutral luxury palette,
+   dramatic whitespace, restrained accent
+   ========================================================================== */
+
+:root {
+  /* Typography – editorial contrast */
+  --font-editorial: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Luxury neutral palette */
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-surface-warm: #f5f5f4;
+  --color-border: #e7e5e4;
+  --color-border-light: #f5f5f4;
+  --color-text: #0a0a0a;
+  --color-text-muted: #57534e;
+  --color-text-subtle: #a8a29e;
+
+  /* Restrained accent – deep burgundy (luxury editorial) */
+  --color-primary: #0a0a0a;
+  --color-primary-hover: #262626;
+  --color-accent: #7c2d12;
+  --color-accent-hover: #9a3412;
+  --color-accent-light: #fef2f2;
+  --color-accent-ring: rgba(124, 45, 18, 0.2);
+
+  /* Wishlist – same family, slightly lighter */
+  --color-wishlist: #b91c1c;
+  --color-wishlist-hover: #991b1b;
+  --color-wishlist-light: #fef2f2;
+
+  /* Editorial spacing & rhythm */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Surfaces – refined, minimal radius */
+  --radius: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Soft, layered shadows – used sparingly */
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+
+  --max-width: 1400px;
+  --header-height: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Editorial container – generous margins, premium feel */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-3xl);
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding: 0 var(--space-4xl);
+  }
+}

@@ -2,6 +2,8 @@
 
 A production-quality shopping cart and discount engine for a bookstore-style ecommerce app. Built with Node.js/TypeScript (Express) on the backend and React/TypeScript on the frontend. All data is in-memory; no database.
 
+**Project root:** This folder (`online-bookstore`) is the repository root. All paths and commands below are relative to this folder. Open this folder in your editor or terminal to work on the project.
+
 ## Project structure
 
 ```
@@ -18,22 +20,37 @@ online-bookstore/
 │   │   ├── services/         # ProductService, CartService
 │   │   └── api/              # Express routes
 │   └── ...
-├── frontend/                 # React + TypeScript SPA
-│   ├── src/
-│   │   ├── core/             # ApiClient, Money formatting
-│   │   ├── components/       # Layout, product, cart, UI
-│   │   ├── context/         # CartContext, WishlistContext
-│   │   ├── pages/            # Home, Product detail, Cart, Wishlist
-│   │   └── types/
-│   └── ...
-└── README.md
+└── frontend/                 # React + TypeScript SPA
+    ├── src/
+    │   ├── core/             # ApiClient, Money formatting
+    │   ├── components/       # Layout, product, cart, UI
+    │   ├── context/         # CartContext, WishlistContext
+    │   ├── pages/            # Home, Product detail, Cart, Wishlist
+    │   └── types/
+    └── ...
 ```
+
+## Quick start
+
+From this folder (`online-bookstore`):
+
+```bash
+cd backend && npm install && npm run build && npm start
+```
+
+In another terminal:
+
+```bash
+cd frontend && npm install && npm run dev
+```
+
+Frontend: http://localhost:5173 — Backend API: http://localhost:3001
 
 ## Setup
 
 ### Backend
 
-From the repository root (online-bookstore/):
+From this folder (the `online-bookstore` root):
 
 ```bash
 cd backend
@@ -57,7 +74,7 @@ The backend loads products and promotions from `../data/source/` (JSON or CSV). 
 
 ### Frontend
 
-From the repository root (online-bookstore/):
+From this folder (the `online-bookstore` root):
 
 ```bash
 cd frontend

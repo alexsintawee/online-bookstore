@@ -41,3 +41,7 @@ frontend/dist/
 # Optional: uncomment to ignore lock files (not recommended for apps)
 # package-lock.json
 # yarn.lock
+
+# Cursor
+.cursor/
+online-bookstore.code-workspace

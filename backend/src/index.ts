@@ -28,13 +28,35 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve product images from data/source/images at /api/images and /images
-app.use('/api/images', express.static(imagesPath));
-app.use('/images', express.static(imagesPath));
+// Base path for reverse proxy (e.g. cPanel: set BASE_PATH=/online-bookstore)
+const basePath = process.env.BASE_PATH || '';
 
-app.use(createProductsRouter(productService));
-app.use(createCartRouter(cartService));
-app.use(createPromotionsRouter(projectData));
+// Serve product images from data/source/images at /api/images and /images
+app.use(basePath + '/api/images', express.static(imagesPath));
+app.use(basePath + '/images', express.static(imagesPath));
+// Also at root so /api/images works when proxy strips prefix
+if (basePath) {
+  app.use('/api/images', express.static(imagesPath));
+  app.use('/images', express.static(imagesPath));
+}
+
+// Mount at base path (proxy forwards full path, e.g. /online-bookstore/api/products)
+app.use(basePath, createProductsRouter(productService));
+app.use(basePath, createCartRouter(cartService));
+app.use(basePath, createPromotionsRouter(projectData));
+// Also at root (proxy strips prefix and forwards /api/products)
+app.use('', createProductsRouter(productService));
+app.use('', createCartRouter(cartService));
+app.use('', createPromotionsRouter(projectData));
+// When BASE_PATH is not passed by cPanel, proxy still sends /online-bookstore/api/products — mount at /online-bookstore
+const fallbackPath = '/online-bookstore';
+if (fallbackPath !== basePath) {
+  app.use(fallbackPath + '/api/images', express.static(imagesPath));
+  app.use(fallbackPath + '/images', express.static(imagesPath));
+  app.use(fallbackPath, createProductsRouter(productService));
+  app.use(fallbackPath, createCartRouter(cartService));
+  app.use(fallbackPath, createPromotionsRouter(projectData));
+}
 
 const PORT = process.env.PORT ?? 3001;
 app.listen(PORT, () => {

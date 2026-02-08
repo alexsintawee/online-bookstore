@@ -26,12 +26,6 @@ online-bookstore/
 │   │   ├── pages/            # Home, Product detail, Cart, Wishlist
 │   │   └── types/
 │   └── ...
-├── docs/                     # Additional documentation
-│   ├── implementation-explanation.txt   # Implementation overview
-│   ├── project-structure.txt        # Backend / frontend / data breakdown
-│   ├── why-frontend-backend-separate.txt
-│   ├── where-backend-reads-data.txt   # How backend loads data/source
-│   └── deploy-cpanel.txt             # Deploy to cPanel
 └── README.md
 ```
 
@@ -59,7 +53,7 @@ For development with auto-reload:
 npm run dev
 ```
 
-The backend loads products and promotions from `../data/source/` (JSON or CSV). Run backend commands from inside `backend/`. See `docs/where-backend-reads-data.txt` for path details.
+The backend loads products and promotions from `../data/source/` (JSON or CSV). Run backend commands from inside `backend/`. Path is relative to the backend folder: `../data/source/`.
 
 ### Frontend
 
@@ -101,18 +95,6 @@ The suite covers:
 - **BulkPriceRule** (quantity threshold, discount amount)
 - **ThreeForTwoRule** (quantities 2, 3, 4, 6)
 - **PricingEngine** (reference cart totals)
-
-## Documentation
-
-Additional docs are in **`docs/`** (plain text):
-
-| File | Description |
-|------|--------------|
-| `docs/implementation-explanation.txt` | Implementation overview: discount system, catalog, pricing scenarios. |
-| `docs/project-structure.txt` | Project layout by backend, frontend, and data source. |
-| `docs/why-frontend-backend-separate.txt` | Why backend and frontend are separate apps. |
-| `docs/where-backend-reads-data.txt` | Where the backend reads from `data/source` (products, promotions, images). |
-| `docs/deploy-cpanel.txt` | How to deploy backend and frontend to a server using cPanel. |
 
 ## Design decisions
 

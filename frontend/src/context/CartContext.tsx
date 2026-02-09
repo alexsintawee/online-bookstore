@@ -14,6 +14,12 @@ interface CartContextValue {
   cartId: string | null;
   itemCount: number;
   cartSummary: CartSummary | null;
+  /** User-visible error from add/update (e.g. "Could not update cart"). Clear on retry or success. */
+  cartError: string | null;
+  /** Clear any displayed cart error. */
+  clearCartError: () => void;
+  /** Report a cart error (e.g. after failed quantity update on cart page). */
+  setCartError: (message: string | null) => void;
   createCart: () => Promise<void>;
   addToCart: (sku: string, quantityDelta: number) => Promise<void>;
   refreshCart: () => Promise<void>;
@@ -33,6 +39,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   });
   const [cartSummary, setCartSummary] = useState<CartSummary | null>(null);
+  const [cartError, setCartError] = useState<string | null>(null);
+
+  const clearCartError = useCallback(() => setCartError(null), []);
 
   const clearCart = useCallback(() => {
     try {
@@ -42,6 +51,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
     setCartId(null);
     setCartSummary(null);
+    setCartError(null);
   }, []);
 
   const refreshCart = useCallback(async () => {
@@ -84,7 +94,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       try {
         const summary = await ApiClient.updateCartItems(id, sku, quantityDelta);
         setCartSummary(summary);
+        setCartError(null);
       } catch {
+        setCartError('Could not update cart. Please try again.');
         await refreshCart();
       }
     },
@@ -102,6 +114,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     cartId,
     itemCount,
     cartSummary,
+    cartError,
+    clearCartError,
+    setCartError,
     createCart,
     addToCart,
     refreshCart,

@@ -1,6 +1,6 @@
 {
   "api": {
-    "baseUrl": "http://localhost:3001",
+    "baseUrl": "http://localhost:5555",
     "pathPrefix": "/api",
     "errorRequestFailed": "Request failed"
   },

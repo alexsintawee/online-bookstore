@@ -1,0 +1,33 @@
+QA fixes: code quality, error handling, accessibility, and backend validation
+
+Apply non-breaking improvements from docs/QA-Review.md without changing
+core functionality or features.
+
+Frontend
+--------
+- Add React Error Boundary (main.tsx) to show "Something went wrong" and
+  Reload on uncaught errors instead of a blank screen.
+- Cart: surface add/update failures via cartError state; CartPage shows
+  message and Dismiss; CartContext exposes clearCartError and setCartError.
+- ProductDetailPage: use product.sku in addToCart (remove sku!); associate
+  Quantity label with stepper via id="qty-detail".
+- QuantityStepper: add optional id prop for label association (a11y).
+- ProductCard: remove redundant createCart() before addToCart (addToCart
+  already creates cart when needed).
+- CartPage: stop passing onCheckout to SummaryCard so non-functional
+  "Proceed to checkout" button is hidden.
+- Tabs: add stable ids, aria-controls, aria-labelledby for WCAG tab pattern.
+- Zoom dialog: focus close button on open and restore focus to zoom trigger
+  on close (overlay, close button, Escape).
+- Header: cart link aria-label "Cart, N items" when count > 0; cart badge
+  aria-hidden to avoid double announcement.
+
+Backend (Laravel)
+-----------------
+- CartController: validate quantityDelta in [-1000, 1000] and sku length
+  ≤ 128; return 400 with clear message when invalid. Log exceptions before
+  returning 500.
+- ProductController, PromotionController: log exceptions (message, trace)
+  before returning 500; do not expose internals to client.
+
+No change to user-facing features or core flows; build verified.

@@ -25,6 +25,25 @@
   color: var(--color-text);
 }
 
+.cartError {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.cartError p {
+  margin: 0 0 var(--space-sm);
+}
+
+.cartError .clearLink {
+  margin: 0;
+}
+
 .loading {
   padding: var(--space-3xl);
   text-align: center;

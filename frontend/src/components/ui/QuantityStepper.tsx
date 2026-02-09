@@ -8,6 +8,8 @@ interface QuantityStepperProps {
   max?: number;
   onChange: (newValue: number) => void;
   disabled?: boolean;
+  /** Optional id for the input (e.g. for label htmlFor). */
+  id?: string;
 }
 
 export function QuantityStepper({
@@ -16,6 +18,7 @@ export function QuantityStepper({
   max,
   onChange,
   disabled = false,
+  id,
 }: QuantityStepperProps) {
   const [inputValue, setInputValue] = useState(String(value));
   const isFocused = useRef(false);
@@ -85,6 +88,7 @@ export function QuantityStepper({
         <span className={styles.icon} aria-hidden>−</span>
       </button>
       <input
+        id={id}
         type="text"
         inputMode="numeric"
         pattern="[0-9]*"

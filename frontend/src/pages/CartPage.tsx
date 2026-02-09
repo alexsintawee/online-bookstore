@@ -19,7 +19,7 @@ import type { Product } from '../types';
 import styles from './CartPage.module.css';
 
 export function CartPage() {
-  const { cartId, cartSummary, refreshCart, createCart, clearCart } = useCart();
+  const { cartId, cartSummary, cartError, clearCartError, setCartError, refreshCart, clearCart } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
@@ -34,11 +34,12 @@ export function CartPage() {
 
   const handleQuantityChange = async (sku: string, quantityDelta: number) => {
     if (!cartId) return;
+    clearCartError();
     try {
       await ApiClient.updateCartItems(cartId, sku, quantityDelta);
       await refreshCart();
     } catch {
-      // ignore
+      setCartError('Could not update cart. Please try again.');
     }
   };
 
@@ -46,11 +47,12 @@ export function CartPage() {
     if (!cartId) return;
     const item = cartSummary?.items.find((i) => i.sku === sku);
     if (!item) return;
+    clearCartError();
     try {
       await ApiClient.updateCartItems(cartId, sku, -item.quantity);
       await refreshCart();
     } catch {
-      // ignore
+      setCartError('Could not update cart. Please try again.');
     }
   };
 
@@ -98,6 +100,15 @@ export function CartPage() {
       </nav>
       <h1 className={styles.title}>{getCartPageTitle()}</h1>
 
+      {cartError && (
+        <div className={styles.cartError} role="alert">
+          <p>{cartError}</p>
+          <button type="button" onClick={clearCartError} className={styles.clearLink}>
+            Dismiss
+          </button>
+        </div>
+      )}
+
       {isEmpty ? (
         <div className={styles.empty}>
           <p>{getEmptyCartMessage()}</p>
@@ -123,7 +134,7 @@ export function CartPage() {
             })}
           </div>
           <aside className={styles.summary}>
-            <SummaryCard summary={cartSummary} onCheckout={() => {}} />
+            <SummaryCard summary={cartSummary} />
           </aside>
         </div>
       )}

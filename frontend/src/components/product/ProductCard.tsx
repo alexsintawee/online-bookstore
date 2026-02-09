@@ -13,7 +13,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { addToCart, createCart } = useCart();
+  const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const inWishlist = isInWishlist(product.sku);
   const imageUrl = product.imageUrl || `/api/images/${product.sku}.svg`;
@@ -21,7 +21,6 @@ export function ProductCard({ product }: ProductCardProps) {
   const [imageLoadError, setImageLoadError] = useState(false);
 
   const handleAddToCart = async () => {
-    await createCart();
     await addToCart(product.sku, 1);
   };
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\LoadPromotions;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 
 class PromotionController extends Controller
 {
@@ -17,6 +17,7 @@ class PromotionController extends Controller
             $data = LoadPromotions::getPromotionData($dataDir);
             return response()->json($data);
         } catch (\Throwable $e) {
+            Log::error('Promotions load failed', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return response()->json(['error' => config('core.api.error_failed_load_promotions', 'Failed to load promotions')], 500);
         }
     }

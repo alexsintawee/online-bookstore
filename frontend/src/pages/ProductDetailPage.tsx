@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useParams, Link } from 'react-router-dom';
 import { ApiClient, getImageSrc } from '../core/api/ApiClient';
@@ -61,6 +61,8 @@ export function ProductDetailPage() {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [zoomImageLoaded, setZoomImageLoaded] = useState(false);
   const [zoomImageLoadError, setZoomImageLoadError] = useState(false);
+  const zoomTriggerRef = useRef<HTMLButtonElement>(null);
+  const zoomCloseRef = useRef<HTMLButtonElement>(null);
   const { addToCart } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
   const inWishlist = product ? isInWishlist(product.sku) : false;
@@ -95,7 +97,10 @@ export function ProductDetailPage() {
   useEffect(() => {
     if (!zoomOpen) return;
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setZoomOpen(false);
+      if (e.key === 'Escape') {
+        setZoomOpen(false);
+        setTimeout(() => zoomTriggerRef.current?.focus(), 0);
+      }
     };
     document.addEventListener('keydown', handleEscape);
     document.body.style.overflow = 'hidden';
@@ -105,8 +110,16 @@ export function ProductDetailPage() {
     };
   }, [zoomOpen]);
 
+  useEffect(() => {
+    if (zoomOpen) {
+      const t = setTimeout(() => zoomCloseRef.current?.focus(), 0);
+      return () => clearTimeout(t);
+    }
+  }, [zoomOpen]);
+
   const handleAddToCart = async () => {
-    await addToCart(sku!, quantity);
+    if (!product) return;
+    await addToCart(product.sku, quantity);
   };
 
   if (!product) {
@@ -184,6 +197,7 @@ export function ProductDetailPage() {
             </div>
             <div className={styles.imageActions}>
               <button
+                ref={zoomTriggerRef}
                 type="button"
                 className={styles.imageBtn}
                 onClick={() => imageUrl && (setZoomLevel(1), setZoomOpen(true))}
@@ -212,6 +226,7 @@ export function ProductDetailPage() {
           <div className={styles.quantityRow}>
             <label htmlFor="qty-detail">{getQuantityLabel()}</label>
             <QuantityStepper
+              id="qty-detail"
               value={quantity}
               min={1}
               onChange={setQuantity}
@@ -253,16 +268,23 @@ export function ProductDetailPage() {
       {zoomOpen && imageUrl && createPortal(
         <div
           className={styles.zoomOverlay}
-          onClick={() => setZoomOpen(false)}
+          onClick={() => {
+            setZoomOpen(false);
+            setTimeout(() => zoomTriggerRef.current?.focus(), 0);
+          }}
           role="dialog"
           aria-modal="true"
           aria-label={getZoomDialogAriaLabel()}
         >
           <div className={styles.zoomContent} onClick={(e) => e.stopPropagation()}>
             <button
+              ref={zoomCloseRef}
               type="button"
               className={styles.zoomClose}
-              onClick={() => setZoomOpen(false)}
+              onClick={() => {
+                setZoomOpen(false);
+                setTimeout(() => zoomTriggerRef.current?.focus(), 0);
+              }}
               aria-label={getCloseZoomAriaLabel()}
             >
               {getCloseZoomButtonLabel()}

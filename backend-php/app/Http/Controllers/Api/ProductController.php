@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -21,6 +21,7 @@ class ProductController extends Controller
             $products = $this->productService->getAllProducts();
             return response()->json($products);
         } catch (\Throwable $e) {
+            Log::error('Products index failed', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return response()->json(['error' => config('core.api.error_failed_load_products', 'Failed to load products')], 500);
         }
     }
@@ -47,6 +48,7 @@ class ProductController extends Controller
                 'imageUrl' => $imageUrl,
             ]);
         } catch (\Throwable $e) {
+            Log::error('Product show failed', ['sku' => $sku, 'message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return response()->json(['error' => config('core.api.error_failed_load_product', 'Failed to load product')], 500);
         }
     }

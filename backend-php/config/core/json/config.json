@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "Online Bookstore API",
+    "env": "production",
+    "debug": false,
+    "url": "http://localhost:5555",
+    "timezone": "UTC",
+    "locale": "en",
+    "fallback_locale": "en",
+    "faker_locale": "en_US",
+    "cipher": "AES-256-CBC",
+    "maintenance_driver": "file"
+  },
+  "bookstore": {
+    "data_path": "../data",
+    "paths": {
+      "products_csv": "source/csv/products.csv",
+      "products_json": "source/json/products.json",
+      "promotion_csv": "source/csv/promotion.csv",
+      "promotion_json": "source/json/promotion.json",
+      "images_subpath": "source/images"
+    }
+  },
+  "default_products": [
+    {"sku": "9325336130810", "name": "Game of Thrones: Season 1", "price": 39.49, "image": "9325336130810.jpg"},
+    {"sku": "9325336028278", "name": "The Fresh Prince of Bel-Air", "price": 19.99, "image": "9325336028278.svg"},
+    {"sku": "9780201835953", "name": "The Mythical Man-Month", "price": 31.87, "image": "9780201835953.svg"},
+    {"sku": "9781430219484", "name": "Coders at Work", "price": 28.72, "image": "9781430219484.svg"},
+    {"sku": "9780132071482", "name": "Artificial Intelligence", "price": 119.92, "image": "9780132071482.svg"}
+  ],
+  "default_promotions": {
+    "promotions": [
+      {"type": "bulk_price", "id": "bulk-mythical-man-month", "sku": "9780201835953", "minQuantity": 10, "discountedUnitPrice": 21.99},
+      {"type": "multi_buy_free", "id": "3-for-2-coders-at-work", "sku": "9781430219484", "groupSize": 3, "freeCount": 1}
+    ]
+  },
+  "default_discount_rules": [
+    {"type": "bulk_price", "sku": "9780201835953", "minQuantity": 10, "discountedUnitPriceCents": 2199},
+    {"type": "multi_buy_free", "sku": "9781430219484", "groupSize": 3, "freeCount": 1}
+  ],
+  "api": {
+    "message_root": "Online Bookstore API",
+    "error_failed_load_products": "Failed to load products",
+    "error_product_not_found": "Product not found",
+    "error_failed_load_product": "Failed to load product",
+    "error_cart_not_found": "Cart not found",
+    "error_invalid_cart_items_body": "Body must include sku (string) and quantityDelta (number)",
+    "error_failed_create_cart": "Failed to create cart",
+    "error_failed_load_promotions": "Failed to load promotions",
+    "image_url_prefix": "/api/images"
+  },
+  "serve": {"port": 5555},
+  "cors": {
+    "paths": ["api/*", "api/images/*", "images/*"],
+    "allowed_methods": ["*"],
+    "allowed_origins": ["*"],
+    "allowed_origins_patterns": [],
+    "allowed_headers": ["*"],
+    "exposed_headers": [],
+    "max_age": 0,
+    "supports_credentials": false
+  }
+}

@@ -478,6 +478,8 @@ const defaultFromFile: AppConfig = fromFile(defaultConfig);
 export async function loadConfig(): Promise<AppConfig> {
   if (config) return config;
   config = defaultFromFile;
+  // Only fetch public/config.json in production (deployed dist). Local dev uses src/core/config/config.json only.
+  if (!import.meta.env.PROD) return config;
   try {
     const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
     const res = await fetch(`${base}config.json`, { cache: 'no-store' });

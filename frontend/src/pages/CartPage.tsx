@@ -29,12 +29,8 @@ export function CartPage() {
   }, []);
 
   useEffect(() => {
-    if (cartId) {
-      refreshCart();
-    } else {
-      createCart();
-    }
-  }, [cartId, refreshCart, createCart]);
+    if (cartId) refreshCart();
+  }, [cartId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleQuantityChange = async (sku: string, quantityDelta: number) => {
     if (!cartId) return;
@@ -61,7 +57,18 @@ export function CartPage() {
   if (!cartId) {
     return (
       <div className="container">
-        <p className={styles.loading}>{getLoadingCart()}</p>
+        <nav className={styles.breadcrumbs} aria-label={getBreadcrumbAriaLabel()}>
+          <Link to="/">{getBreadcrumbHome()}</Link>
+          <span className={styles.sep}>{getBreadcrumbSeparator()}</span>
+          <span>{getBreadcrumbCart()}</span>
+        </nav>
+        <h1 className={styles.title}>{getCartPageTitle()}</h1>
+        <div className={styles.empty}>
+          <p>{getEmptyCartMessage()}</p>
+          <Link to="/" className={styles.shopLink}>
+            {getContinueShopping()}
+          </Link>
+        </div>
       </div>
     );
   }

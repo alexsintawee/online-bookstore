@@ -20,6 +20,10 @@ online-bookstore/
 │   │   ├── services/         # ProductService, CartService
 │   │   └── api/              # Express routes
 │   └── ...
+├── backend-php/              # PHP Laravel API (same endpoints as backend)
+│   ├── app/                  # Domain, repositories, services, controllers
+│   ├── config/               # core/json/config.json, app, bookstore, cors
+│   └── ...
 └── frontend/                 # React + TypeScript SPA
     ├── src/
     │   ├── core/             # ApiClient, Money formatting
@@ -46,6 +50,14 @@ cd frontend && npm install && npm run dev
 
 Frontend: http://localhost:5173 — Backend API: http://localhost:3001
 
+To run the **PHP Laravel** backend instead (port 5555):
+
+```bash
+cd backend-php && composer install && cp .env.example .env && php artisan key:generate && php artisan serve --port=5555
+```
+
+Backend-php API: http://localhost:5555
+
 ## Setup
 
 ### Backend
@@ -71,6 +83,33 @@ npm run dev
 ```
 
 The backend loads products and promotions from `../data/source/` (JSON or CSV). Run backend commands from inside `backend/`. Path is relative to the backend folder: `../data/source/`.
+
+### Backend (PHP Laravel)
+
+From this folder (the `online-bookstore` root):
+
+```bash
+cd backend-php
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+Start the API (serves at `http://localhost:5555`):
+
+```bash
+php artisan serve --port=5555
+```
+
+Or use the composer script:
+
+```bash
+composer run serve
+```
+
+**Requirements:** PHP 8.2+, Composer.
+
+The Laravel app reads the same data as the Node backend: `../data/source/` (CSV/JSON and images). Config is in `backend-php/config/core/json/config.json`. See `backend-php/README.md` for endpoints, config details, and **troubleshooting** (e.g. `composer: command not found` → install with `brew install composer` on macOS).
 
 ### Frontend
 
